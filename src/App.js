@@ -3,8 +3,7 @@ import './App.css';
 import Map from './components/Map.js'
 import Filters from './components/Filters.js'
 import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
-
-
+import 'leaflet/dist/leaflet.css'
 function App() {
   const position = [51.505, -0.09]
   return (
