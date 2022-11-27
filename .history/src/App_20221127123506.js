@@ -13,7 +13,16 @@ function App() {
     <div className="App">
       <NextUIProvider>
 
-      
+      <Card isHoverable variant="bordered" css={{ 
+        mw: "400px",
+        width:"20vw",
+        height:"100vh",
+        position:"absolute",
+     }}>
+      <Card.Body>
+        <Text>Seattle</Text>
+      </Card.Body>
+    </Card>
 
       <Map
       mapboxAccessToken="pk.eyJ1Ijoic2FtZWVoc3VoYWlsIiwiYSI6ImNsYXltY3YwMjEwZWwzbm44NWNrZDFuNHIifQ.TxMGHqwzrfCJ81W-H0xI5w"
@@ -43,16 +52,7 @@ function App() {
 
 export default App;
 /**
-      <Card isHoverable variant="bordered" css={{ 
-        mw: "400px",
-        width:"20vw",
-        height:"100vh",
-        position:"absolute",
-     }}>
-      <Card.Body>
-        <Text>Seattle</Text>
-      </Card.Body>
-    </Card>
+      
       
       <Marker
         longitude={lng}
