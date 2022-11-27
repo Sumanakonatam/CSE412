@@ -1,24 +1,60 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react";
 import './App.css';
-import Map from './components/Map.js'
-import Filters from './components/Filters.js'
-import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+import Map, {FullscreenControl, GeolocateControl, Marker, NavigationControl} from "react-map-gl"
+import { Card,Text } from '@nextui-org/react';
+import { NextUIProvider } from '@nextui-org/react';
+
 function App() {
-  const position = [51.505, -0.09]
+  const[lat, setLat] = useState(47.6038321);
+  const[lng, setLng] = useState(-122.330062);
+
+
   return (
-    <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-      <TileLayer
-        attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={position}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    </MapContainer>
+    <div className="App">
+      <NextUIProvider>
+
+      
+
+      <Map
+      mapboxAccessToken="pk.eyJ1Ijoic2FtZWVoc3VoYWlsIiwiYSI6ImNsYXltY3YwMjEwZWwzbm44NWNrZDFuNHIifQ.TxMGHqwzrfCJ81W-H0xI5w"
+      style={{
+        width:"80vw",
+        height:"100vh",
+        position:"relative",
+        paddingLeft:"20vw"
+      }}
+
+      
+      
+      mapStyle="mapbox://styles/sameehsuhail/claymls6e004115mxig2eme72"
+      >
+        
+        <NavigationControl
+        position="top-right"
+        />
+        
+        <FullscreenControl/>
+        <GeolocateControl/>
+        </Map>
+        </NextUIProvider>
+    </div>
   );
 }
 
 export default App;
+/**
+      <Card isHoverable variant="bordered" css={{ 
+        mw: "400px",
+        width:"20vw",
+        height:"100vh",
+        position:"absolute",
+     }}>
+      <Card.Body>
+        <Text>Seattle</Text>
+      </Card.Body>
+    </Card>
+      
+      <Marker
+        longitude={lng}
+        latitude={lat}
+        />*/
