@@ -15,14 +15,22 @@
 
 .App-header {
   background-color: #282c34;
+  background-image: unset;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+
 }
+.container {
+  border: 1px solid;
+  padding: 15px;
+  margin: 50px;
+ 
+}
+
 
 .App-link {
   color: #61dafb;
@@ -37,6 +45,25 @@
   }
 }
 
+.inline {
+  display:inline-block;
+  font-size: 30px;
+}
+.extra {
+  display:inline-block;
+  font-size: 22px;
+  flex-wrap: wrap;
+}
+#cardRight{
+  float: left;
+  width: 50%;
+  height: 100%;
+  background-color: #282c34;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+
+}
 
 
 
