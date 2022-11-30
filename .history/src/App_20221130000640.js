@@ -46,7 +46,7 @@ function App() {
           )
           .then((res) => {
             listings[neighnames] = res.data
-            //alert(res.data["count"])
+            alert(res.data["count"])
           });
       }
     }
@@ -64,7 +64,7 @@ function App() {
           )
           .then((res) => {
             hosts[neighnames] = res.data
-            //alert(res.data["count"])
+            alert(res.data["count"])
           });
       }
 

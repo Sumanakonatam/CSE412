@@ -16,6 +16,8 @@ function App() {
   const [data, setData] = useState()
   const [isListing, setisListing] = useState(true)
   const [price, setPrice] = useState([0,300])
+  //const [isHome, setisHome] = useState()
+  //const [isRoom, setisRoom] = useState()
   const [minNights, setminNights] = useState(2)
   const [selected, setSelected] = useState(["Entire Home"]);
 
@@ -24,8 +26,11 @@ function App() {
     [selected]
   );
 
+
   
   function getData() {
+    const isHome="yes"
+    const isRoom="yes"
 
     axios.get(`http://localhost:8080/neighborhoods`).then((res) => {
       
@@ -35,18 +40,17 @@ function App() {
 
     if (isListing == true) {
       let listings = {};
-      const array = Array.from(selected)
-      alert(array[0])
+      alert(selected)
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
 
         const neighnames=neighborhoods[neighs]["neighborhood_group"]
         axios
           .get(
-            `http://localhost:8080/listings/${neighnames}?minPrice=${price[0]}&maxPrice=${price[1]}&home=${array.includes("Entire Home") ? 'yes' : 'no'}&room=${array.includes("Private Room") ? 'yes' : 'no'}&minNights=${minNights}`
+            `http://localhost:8080/listings/${neighnames}?minPrice=${price[0]}&maxPrice=${price[1]}&home=${isHome}&room=${isRoom}&minNights=${minNights}`
           )
           .then((res) => {
             listings[neighnames] = res.data
-            //alert(res.data["count"])
+            alert(res.data["count"])
           });
       }
     }
@@ -64,7 +68,7 @@ function App() {
           )
           .then((res) => {
             hosts[neighnames] = res.data
-            //alert(res.data["count"])
+            alert(res.data["count"])
           });
       }
 

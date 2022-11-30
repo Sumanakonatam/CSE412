@@ -15,38 +15,34 @@ function App() {
   const [neighborhoods, setNeighborhoods] = useState()
   const [data, setData] = useState()
   const [isListing, setisListing] = useState(true)
-  const [price, setPrice] = useState([0,300])
-  const [minNights, setminNights] = useState(2)
-  const [selected, setSelected] = useState(["Entire Home"]);
-
-  const selectedValue = React.useMemo(
-    () => Array.from(selected).join(", ").replaceAll("_", " "),
-    [selected]
-  );
-
+  const [price, setPrice] = useState()
+  //const [isHome, setisHome] = useState()
+  //const [isRoom, setisRoom] = useState()
+  const [minNights, setminNights] = useState()
   
   function getData() {
+    const isHome="yes"
+    const isRoom="yes"
 
     axios.get(`http://localhost:8080/neighborhoods`).then((res) => {
-      
+      alert("lisings is true")
       alert(res.data)
       setNeighborhoods(res.data)
     });
 
     if (isListing == true) {
       let listings = {};
-      const array = Array.from(selected)
-      alert(array[0])
+
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
 
         const neighnames=neighborhoods[neighs]["neighborhood_group"]
         axios
           .get(
-            `http://localhost:8080/listings/${neighnames}?minPrice=${price[0]}&maxPrice=${price[1]}&home=${array.includes("Entire Home") ? 'yes' : 'no'}&room=${array.includes("Private Room") ? 'yes' : 'no'}&minNights=${minNights}`
+            `http://localhost:8080/listings/${neighnames}?minPrice=${price[0]}&maxPrice=${price[1]}&home=${isHome}&room=${isRoom}&minNights=${minNights}`
           )
           .then((res) => {
             listings[neighnames] = res.data
-            //alert(res.data["count"])
+            alert(res.data["count"])
           });
       }
     }
@@ -64,7 +60,7 @@ function App() {
           )
           .then((res) => {
             hosts[neighnames] = res.data
-            //alert(res.data["count"])
+            alert(res.data["count"])
           });
       }
 
@@ -98,15 +94,10 @@ function App() {
         <Spacer y={0.5} />
 
         <Dropdown onChange={event=>{alert(event.target.value)}}>
-          <Dropdown.Button css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}>{selectedValue}</Dropdown.Button>
-          
-          <Dropdown.Menu disallowEmptySelection
-            selectionMode="multiple"
-            selectedKeys={selected}
-            onSelectionChange={setSelected}>
-
-            <Dropdown.Item key="Entire Home" onClick={event=>{alert(event.target.value)}}>Entire Home</Dropdown.Item>
-            <Dropdown.Item key="Private Room" onClick={event=>{alert(event.target.value)}}>Private Room</Dropdown.Item>
+          <Dropdown.Button css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}>Select A Room Type</Dropdown.Button>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={event=>{alert(event.target.value)}}>Entire Home</Dropdown.Item>
+            <Dropdown.Item onClick={event=>{alert(event.target.value)}}>Private Room</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
@@ -119,8 +110,6 @@ function App() {
         step = {10}
         valueLabelDisplay="auto" 
         onChange={event=>{alert(event.target.value)}}
-        css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}
-        
         />
 
         <Spacer y={2} />
@@ -128,11 +117,12 @@ function App() {
         <h3 class="extra ">Minimum Nights</h3>
         <Spacer y={0.5} />
 
-        <Slider range min={0} max={50} defaultValue={2} 
+        <Slider range min={0} max={50} defaultValue={[2]} 
         step = {1}
         valueLabelDisplay="auto" 
-        onChange={event=>{}}
-        css={{ backgroundColor: "#3fb1ce", width: '10vw', alignSelf: 'center' }}
+        marginLeft="10px"
+        marginRight="10px"
+        onChange={event=>{alert(event.target.value)}}
         />
 
       </Card>
