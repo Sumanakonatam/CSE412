@@ -62,7 +62,7 @@ function App() {
             i++;
           });
       }
-      alert(data.Magnolia)
+      alert(data["Magnolia"])
     }
 
     else if(isListing==false)
@@ -140,7 +140,7 @@ function App() {
         <Slider range min={0} max={1000} defaultValue={[0,300]} 
         step = {10}
         valueLabelDisplay="auto" 
-        onChange={event=>{setPrice(event.target.value)}}
+        onChange={event=>{alert(event.target.value)}}
         css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}
         
         />
@@ -153,7 +153,7 @@ function App() {
         <Slider range min={0} max={50} defaultValue={2} 
         step = {1}
         valueLabelDisplay="auto" 
-        onChange={event=>{setminNights(event.target.value)}}
+        onChange={event=>{}}
         css={{ backgroundColor: "#3fb1ce", width: '10vw', alignSelf: 'center' }}
         />
 

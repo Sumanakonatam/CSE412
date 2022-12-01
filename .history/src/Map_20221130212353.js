@@ -47,6 +47,7 @@ class Mapcomp extends React.Component{
 		let long = this.state.neighborhoods[n].longitude
 		let name= this.state.neighborhoods[n].neighborhood_group
 		//alert(name)
+		//alert(this.state.data[name])
 
 		var myCircle = new MapboxCircle({lat: lati, lng:long }, this.state.data[name] , {		//this.state.data[name]
 			editable: false,
@@ -54,7 +55,7 @@ class Mapcomp extends React.Component{
 			fillColor: '#880808'
 		}).addTo(this.map);
 }
-	  }}
+	  }
 	
 	componentDidMount(){
 

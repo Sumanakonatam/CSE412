@@ -62,15 +62,13 @@ function App() {
             i++;
           });
       }
-      alert(data.Magnolia)
+      alert(data["Magnolia"])
     }
 
     else if(isListing==false)
     {
-      setData({})
-      let i = 0;
-      const array = Array.from(selected)
-      alert(array[0])
+      let hosts={};
+
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
 
         const neighnames=neighborhoods[neighs]["neighborhood_group"]
@@ -79,14 +77,11 @@ function App() {
             `http://localhost:8080/hosts/${neighnames}`
           )
           .then((res) => {
-            let hosts = data
             hosts[neighnames] = res.data["count"]
-            setData(hosts)
-            i++;
             //alert(res.data["count"])
           });
       }
-      //alert(data.Magnolia)
+      setData(hosts)
 
       
     }
@@ -140,7 +135,7 @@ function App() {
         <Slider range min={0} max={1000} defaultValue={[0,300]} 
         step = {10}
         valueLabelDisplay="auto" 
-        onChange={event=>{setPrice(event.target.value)}}
+        onChange={event=>{alert(event.target.value)}}
         css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}
         
         />
@@ -153,7 +148,7 @@ function App() {
         <Slider range min={0} max={50} defaultValue={2} 
         step = {1}
         valueLabelDisplay="auto" 
-        onChange={event=>{setminNights(event.target.value)}}
+        onChange={event=>{}}
         css={{ backgroundColor: "#3fb1ce", width: '10vw', alignSelf: 'center' }}
         />
 

@@ -47,7 +47,7 @@ function App() {
       setData({})
       let i = 0;
       const array = Array.from(selected)
-      alert(array[0])
+     // alert(array[0])
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
 
         const neighnames=neighborhoods[neighs]["neighborhood_group"]
@@ -62,7 +62,7 @@ function App() {
             i++;
           });
       }
-      alert(data.Magnolia)
+      //alert(data.Magnolia)
     }
 
     else if(isListing==false)
@@ -70,7 +70,7 @@ function App() {
       setData({})
       let i = 0;
       const array = Array.from(selected)
-      alert(array[0])
+     // alert(array[0])
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
 
         const neighnames=neighborhoods[neighs]["neighborhood_group"]
@@ -110,7 +110,7 @@ function App() {
           <Col span={4}><p class="inline" css={{ font: "10px" }}>Hosts</p></Col>
           <Col span={4}>
 
-            <Switch checked={true} color="primary" onChange={event=>{setisListing(!isListing);alert(isListing)}} /></Col>
+            <Switch checked={true} color="primary" onChange={event=>{setisListing(!isListing);}} /></Col>
 
           <Col span={4}><p class="inline">Listings</p></Col>
         </Row>
@@ -119,7 +119,7 @@ function App() {
         <h3 class="extra">Room Type</h3>
         <Spacer y={0.5} />
 
-        <Dropdown onChange={event=>{alert(event.target.value)}}>
+        <Dropdown onChange={event=>{(event.target.value)}}>
           <Dropdown.Button css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}>{selectedValue}</Dropdown.Button>
           
           <Dropdown.Menu disallowEmptySelection
@@ -127,8 +127,8 @@ function App() {
             selectedKeys={selected}
             onSelectionChange={setSelected}>
 
-            <Dropdown.Item key="Entire Home" onClick={event=>{alert(event.target.value)}}>Entire Home</Dropdown.Item>
-            <Dropdown.Item key="Private Room" onClick={event=>{alert(event.target.value)}}>Private Room</Dropdown.Item>
+            <Dropdown.Item key="Entire Home" onClick={event=>{(event.target.value)}}>Entire Home</Dropdown.Item>
+            <Dropdown.Item key="Private Room" onClick={event=>{(event.target.value)}}>Private Room</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
@@ -140,7 +140,7 @@ function App() {
         <Slider range min={0} max={1000} defaultValue={[0,300]} 
         step = {10}
         valueLabelDisplay="auto" 
-        onChange={event=>{setPrice(event.target.value)}}
+        onChange={event=>{(event.target.value)}}
         css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}
         
         />
@@ -153,7 +153,7 @@ function App() {
         <Slider range min={0} max={50} defaultValue={2} 
         step = {1}
         valueLabelDisplay="auto" 
-        onChange={event=>{setminNights(event.target.value)}}
+        onChange={event=>{}}
         css={{ backgroundColor: "#3fb1ce", width: '10vw', alignSelf: 'center' }}
         />
 

@@ -13,8 +13,8 @@ import Slider from '@mui/material/Slider';
 function App() {
 
 
-  const [neighborhoods, setNeighborhoods] = useState(true)
-  const [data, setData] = useState(true)
+  const [neighborhoods, setNeighborhoods] = useState()
+  const [data, setData] = useState()
   const [isListing, setisListing] = useState(true)
   const [price, setPrice] = useState([0,300])
   const [minNights, setminNights] = useState(2)
@@ -30,22 +30,25 @@ function App() {
 
     axios.get(`http://localhost:8080/neighborhoods`).then((res) => {
       
-
+      alert(res.data)
       setNeighborhoods(res.data)
-
+     export const latarray=[]
+      let longarray=[]
 
       for (let neighs = 0; neighs < res.data.length; neighs++) {
 
         const lats=res.data[neighs].latitude
+        latarray[neighs]=lats
         const longs=res.data[neighs].longitude
-
+        longarray[neighs]=longs
+        alert(latarray)
+       // alert(longs)
       }
 
     });
 
     if (isListing == true) {
-      setData({})
-      let i = 0;
+      let listings = {};
       const array = Array.from(selected)
       alert(array[0])
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
@@ -56,21 +59,16 @@ function App() {
             `http://localhost:8080/listings/${neighnames}?minPrice=${price[0]}&maxPrice=${price[1]}&home=${array.includes("Entire Home") ? 'yes' : 'no'}&room=${array.includes("Private Room") ? 'yes' : 'no'}&minNights=${minNights}`
           )
           .then((res) => {
-            let listings = data
-            listings[neighnames] = res.data["count"]
-            setData(listings)
-            i++;
+            listings[neighnames] = res.data
+            //alert(res.data["count"])
           });
       }
-      alert(data.Magnolia)
     }
 
     else if(isListing==false)
     {
-      setData({})
-      let i = 0;
-      const array = Array.from(selected)
-      alert(array[0])
+      let hosts={};
+
       for (let neighs = 0; neighs < neighborhoods.length; neighs++) {
 
         const neighnames=neighborhoods[neighs]["neighborhood_group"]
@@ -79,17 +77,14 @@ function App() {
             `http://localhost:8080/hosts/${neighnames}`
           )
           .then((res) => {
-            let hosts = data
-            hosts[neighnames] = res.data["count"]
-            setData(hosts)
-            i++;
+            hosts[neighnames] = res.data
             //alert(res.data["count"])
           });
       }
-      //alert(data.Magnolia)
 
       
     }
+
     
   }
 
@@ -140,7 +135,7 @@ function App() {
         <Slider range min={0} max={1000} defaultValue={[0,300]} 
         step = {10}
         valueLabelDisplay="auto" 
-        onChange={event=>{setPrice(event.target.value)}}
+        onChange={event=>{alert(event.target.value)}}
         css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}
         
         />
@@ -153,7 +148,7 @@ function App() {
         <Slider range min={0} max={50} defaultValue={2} 
         step = {1}
         valueLabelDisplay="auto" 
-        onChange={event=>{setminNights(event.target.value)}}
+        onChange={event=>{}}
         css={{ backgroundColor: "#3fb1ce", width: '10vw', alignSelf: 'center' }}
         />
 
@@ -165,7 +160,7 @@ function App() {
   return (
     <div className="App">
       {popUp()}
-      <Mapcomp props={[neighborhoods,data]}
+      <Mapcomp
         initialViewState={{
           longitude: -122.3868,
           latitude: 47.5667,
@@ -180,7 +175,6 @@ function App() {
 }
 
 export default App;
-
 
 
 

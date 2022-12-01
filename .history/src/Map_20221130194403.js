@@ -12,9 +12,9 @@ const MapboxCircle = require('mapbox-gl-circle');
 
 class Mapcomp extends React.Component{
 
-
 	constructor(props){
 		super(props);
+		alert(props.props)
 		this.state = {
 			lng: -122.3321,
 			lat: 47.6062,
@@ -32,34 +32,12 @@ class Mapcomp extends React.Component{
 			neighborhoods:props.props[0],
 			data:props.props[1]
 		});  
-		if (Object.keys(this.state.data).length == 16) {
-		this.map = new mapboxgl.Map({
-			container: this.mapContainer,
-			style: 'mapbox://styles/sameehsuhail/claymls6e004115mxig2eme72', 
-            width:"900vw",
-			center: [this.state.lng, this.state.lat],
-			zoom: this.state.zoom
-		})
-
-		for(let n=0;n<this.state.neighborhoods.length;n++)
-		{
-		let lati=this.state.neighborhoods[n].latitude
-		let long = this.state.neighborhoods[n].longitude
-		let name= this.state.neighborhoods[n].neighborhood_group
-		//alert(name)
-
-		var myCircle = new MapboxCircle({lat: lati, lng:long }, this.state.data[name] , {		//this.state.data[name]
-			editable: false,
-			minRadius: 150,
-			fillColor: '#880808'
-		}).addTo(this.map);
-}
-	  }}
+	  }
 	
 	componentDidMount(){
 
 
-		this.map = new mapboxgl.Map({
+		const map = new mapboxgl.Map({
 			container: this.mapContainer,
 			style: 'mapbox://styles/sameehsuhail/claymls6e004115mxig2eme72', 
             width:"900vw",
@@ -67,22 +45,18 @@ class Mapcomp extends React.Component{
 			zoom: this.state.zoom
 		})
 
-		/*for(let n=0;n<this.state.neighborhoods.length;n++)
-		{
-		let lati=this.state.neighborhoods[n].latitude
-		let long = this.state.neighborhoods[n].longitude
-		let name= this.state.neighborhoods[n].neighborhood_group
-		//alert(name)
-		//alert(this.state.data[name])
-
-		var myCircle = new MapboxCircle({lat: lati, lng:long }, this.state.data[name] , {		//this.state.data[name]
+for(let n=0;n<this.state.neighborhoods.length;n++)
+{
+	alert(true)
+	alert(this.state.neighborhoods[n].latitude)
+		var myCircle = new MapboxCircle({lat: 47.6062, lng: -122.3321}, 250, {
 			editable: false,
-			minRadius: 150,
-			fillColor: '#880808'
-		}).addTo(this.map);*/
-}
+			minRadius: 1500,
+			fillColor: '#29AB87'
+		}).addTo(map);
+	}
 
-	
+	}
 
 	render(){
 		return(

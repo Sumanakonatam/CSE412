@@ -32,7 +32,7 @@ class Mapcomp extends React.Component{
 			neighborhoods:props.props[0],
 			data:props.props[1]
 		});  
-		if (Object.keys(this.state.data).length == 16) {
+		this.forceUpdate()
 		this.map = new mapboxgl.Map({
 			container: this.mapContainer,
 			style: 'mapbox://styles/sameehsuhail/claymls6e004115mxig2eme72', 
@@ -47,14 +47,15 @@ class Mapcomp extends React.Component{
 		let long = this.state.neighborhoods[n].longitude
 		let name= this.state.neighborhoods[n].neighborhood_group
 		//alert(name)
+		//alert(this.state.data[name])
 
 		var myCircle = new MapboxCircle({lat: lati, lng:long }, this.state.data[name] , {		//this.state.data[name]
 			editable: false,
 			minRadius: 150,
 			fillColor: '#880808'
-		}).addTo(this.map);
+		}).addTo(map);
 }
-	  }}
+	  }
 	
 	componentDidMount(){
 
@@ -67,7 +68,7 @@ class Mapcomp extends React.Component{
 			zoom: this.state.zoom
 		})
 
-		/*for(let n=0;n<this.state.neighborhoods.length;n++)
+		for(let n=0;n<this.state.neighborhoods.length;n++)
 		{
 		let lati=this.state.neighborhoods[n].latitude
 		let long = this.state.neighborhoods[n].longitude
@@ -79,10 +80,10 @@ class Mapcomp extends React.Component{
 			editable: false,
 			minRadius: 150,
 			fillColor: '#880808'
-		}).addTo(this.map);*/
+		}).addTo(map);
 }
 
-	
+	}
 
 	render(){
 		return(
