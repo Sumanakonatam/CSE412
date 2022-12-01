@@ -119,7 +119,7 @@ function App() {
         <h3 class="extra">Room Type</h3>
         <Spacer y={0.5} />
 
-        <Dropdown onChange={event=>{setSelected(event.target.value)}}>
+        <Dropdown onChange={event=>{set(event.target.value)}}>
           <Dropdown.Button css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}>{selectedValue}</Dropdown.Button>
           
           <Dropdown.Menu disallowEmptySelection

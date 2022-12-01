@@ -110,7 +110,7 @@ function App() {
           <Col span={4}><p class="inline" css={{ font: "10px" }}>Hosts</p></Col>
           <Col span={4}>
 
-            <Switch checked={true} color="primary" onChange={event=>{setisListing(!isListing)}} /></Col>
+            <Switch checked={true} color="primary" onChange={event=>{setisListing(!isListing);alert(isListing)}} /></Col>
 
           <Col span={4}><p class="inline">Listings</p></Col>
         </Row>
@@ -119,7 +119,7 @@ function App() {
         <h3 class="extra">Room Type</h3>
         <Spacer y={0.5} />
 
-        <Dropdown onChange={event=>{setSelected(event.target.value)}}>
+        <Dropdown onChange={event=>{alert(event.target.value)}}>
           <Dropdown.Button css={{ backgroundColor: "#3fb1ce", width: '14vw', alignSelf: 'center' }}>{selectedValue}</Dropdown.Button>
           
           <Dropdown.Menu disallowEmptySelection
@@ -127,8 +127,8 @@ function App() {
             selectedKeys={selected}
             onSelectionChange={setSelected}>
 
-            <Dropdown.Item key="Entire Home" onClick={event=>{setSelected(event.target.value)}}>Entire Home</Dropdown.Item>
-            <Dropdown.Item key="Private Room" onClick={event=>{setSelected(event.target.value)}}>Private Room</Dropdown.Item>
+            <Dropdown.Item key="Entire Home" onClick={event=>{alert(event.target.value)}}>Entire Home</Dropdown.Item>
+            <Dropdown.Item key="Private Room" onClick={event=>{alert(event.target.value)}}>Private Room</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
